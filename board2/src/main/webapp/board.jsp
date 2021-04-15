@@ -16,16 +16,6 @@
 </head>
 <body>
 
-<%
-
-	BoardDao dao = BoardDao.getinstance();
-
-	ArrayList<BoardDto> list = dao.boardlist();
-	
-	BoardDto dto = new BoardDto();
-	
-%>
-
 <!-- 부트스트랩 테이블 -->
 
 <div class="container">
@@ -44,15 +34,36 @@
 			<tbody>
 			
 			<%
+				request.setCharacterEncoding("UTF-8");
+
+				BoardDao dao = BoardDao.getinstance();
+				
+				ArrayList<BoardDto> list = new ArrayList<>();
+			
+				String key = request.getParameter("key");
+				String keyword = request.getParameter("keyword");
+			
+				// 검색이 없는 경우
+				if(key == null || keyword == null) {
+
+					list = dao.boardlist(); // 모든 조회 메소드
+				
+				} else { // 검색이 있을 경우
+				
+					list = dao.getboardsearch(key, keyword); // 검색 조회 메소드
+				
+				}
+			
+			
 				for(int i = 0; i < list.size(); i++){
 					
-					dto = list.get(i);
+					BoardDto dto = list.get(i);
 
 					
 			%>
 				<tr onclick="location.href='boarddetail.jsp?id='+<%=dto.getID() %>"> <!-- DB에 있는 데이터를 for문으로 반복 -->
 					<td><%=dto.getID() %></td>
-					<td><%=dto.getTitle()%></a></td>
+					<td><%=dto.getTitle()%></td>
 					<td><%=dto.getUserID() %></td>
 					<td><%=dto.getDate() %></td>
 				</tr>
@@ -64,6 +75,31 @@
 			</tbody>
 		
 		</table>
+		
+		<form action="board.jsp" method="post">
+		
+			<table style="margin: 0 auto;">
+				<tr>
+					<td>
+						<select name="key" class="form-control">
+							<option value="board_title">제목</option> <!-- value="필드명" -->
+							<option value="board_contents">내용</option>
+							<option value="board_userid">작성자</option>
+						</select>
+					</td>
+					
+					<td>
+						<input type="text" name="keyword" value="" size=20 class="form-control">
+					</td>								<!-- 필드 값 -->
+					
+					<td>
+						<input type="submit" value="검색" class="btn btn-default">
+					</td>
+					
+				</tr>
+			</table>
+			
+		</form>
 		
 		<a href="boardwrite.jsp" class="btn btn-primary pull-right">글작성</a>
 		

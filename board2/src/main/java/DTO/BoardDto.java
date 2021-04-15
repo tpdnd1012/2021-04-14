@@ -2,13 +2,14 @@ package DTO;
 
 public class BoardDto {
 	
-	private int ID; // 게시물 번호
-	private String Title; // 게시물 제목
-	private String Contents; // 게시물 내용
-	private String userID; // 세션 = 작성자
-	private String Date; // 게시물 작성일
-	private int Available; // 게시물 표시여부
-	private String File; // 게시물 첨부 파일
+	private int ID;				// 게시물 번호
+	private String Title;		// 게시물 제목
+	private String Contents;	// 게시물 내용
+	private String userID;		// 세션 = 작성자
+	private String Date;		// 게시물 작성일
+	private int Available;		// 게시물 표시여부
+	private String File;		// 게시물 첨부 파일
+	private int count;			// 게시물 조회수
 	
 	
 	
@@ -53,6 +54,12 @@ public class BoardDto {
 	}
 	public void setFile(String file) {
 		File = file;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 }

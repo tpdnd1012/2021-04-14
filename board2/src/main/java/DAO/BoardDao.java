@@ -95,7 +95,7 @@ public class BoardDao {
 	// 게시물 등록 메소드
 	public int write(BoardDto dto) {
 		
-		String sql = "insert into Board values(?,?,?,?,?,?,?)";
+		String sql = "insert into Board values(?,?,?,?,?,?,?,?)";
 		
 		try {
 			
@@ -108,6 +108,7 @@ public class BoardDao {
 			pstmt.setString(5, getDate()); // 만들어 놓은 게시물 등록 메소드 호출
 			pstmt.setInt(6, dto.getAvailable());
 			pstmt.setString(7, dto.getFile());
+			pstmt.setInt(8, 0);
 			
 			pstmt.executeUpdate();
 			
@@ -144,26 +145,60 @@ public class BoardDao {
 	}
 	
 	// 게시물 삭제 메소드 ?? 일반 사용자 -> 삭제 [ 비활성화 = 0 ]
+//	public int delete(int id) {
+//		
+//		String sql = "update board set board_available = 0 where board_id = ?";
+//		
+//		try {
+//			
+//			PreparedStatement pstmt = conn.prepareStatement(sql);
+//			
+//			pstmt.setInt(1, id);
+//			
+//			pstmt.executeUpdate();
+//			
+//			return 1;
+//			
+//		}catch (Exception e) {
+//			e.getMessage();
+//			e.getStackTrace();
+//		}
+//		return -1;
+//	}
+	
+	// 게시물 삭제 메소드 ?? 일반 사용자 -> 삭제했을때 => 삭제된 번호 부터 뒤로 -1 차감
+	// 게시물 삭제 메소드
 	public int delete(int id) {
+	
+	String sql = "delete from board where board_id=?";
+	
+	try {
 		
-		String sql = "update board set board_available = 0 where board_id = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
-		try {
-			
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setInt(1, id);
-			
-			pstmt.executeUpdate();
-			
-			return 1;
-			
-		}catch (Exception e) {
-			e.getMessage();
-			e.getStackTrace();
-		}
-		return -1;
+		pstmt.setInt(1, id);
+		
+		pstmt.executeUpdate();
+		
+		// 삭제후 -1 차감
+		
+		sql = "update board set board_id = board_id - 1 where board_id > ?";
+			// 삭제 되는 게시물번호 보다 큰 번호는 -1씩 감소
+		
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setInt(1, id);
+		
+		pstmt.executeUpdate();
+		
+		return 1;
+		
+	}catch (Exception e) {
+		e.getMessage();
+		e.getStackTrace();
 	}
+	return -1;
+}
 	
 	// 게시물 모든 조회 메소드
 	public ArrayList<BoardDto> boardlist(){
@@ -207,9 +242,9 @@ public class BoardDao {
 	// 게시물 개별 조회 메소드
 	public BoardDto getboard(int id) {
 		
-		String sql = "select * from board where board_id=?";
-		
 		try {
+			
+			String sql = "select * from board where board_id=?";
 			
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
@@ -217,9 +252,11 @@ public class BoardDao {
 			
 			rs = pstmt.executeQuery();
 			
+			BoardDto dto = new BoardDto();
+			
 			if(rs.next()) {
 				
-				BoardDto dto = new BoardDto();
+				int count = rs.getInt(8) + 1;
 				
 				dto.setID(rs.getInt(1));
 				dto.setTitle(rs.getString(2));
@@ -228,6 +265,16 @@ public class BoardDao {
 				dto.setDate(rs.getString(5));
 				dto.setAvailable(rs.getInt(6));
 				dto.setFile(rs.getString(7));
+				dto.setCount(count);
+				
+				sql = "update board set board_count = ? where board_id = ?";
+				
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, count);
+				pstmt.setInt(2, id);
+				
+				pstmt.executeUpdate();
 				
 				return dto;
 				
@@ -239,4 +286,43 @@ public class BoardDao {
 		return null;
 	}
 	
+	
+	// 게시물 검색조회 메소드
+	public ArrayList<BoardDto> getboardsearch(String key, String keyword) {
+
+		ArrayList<BoardDto> list = null;
+
+		String sql = "select * from board where " + key + " like '%" + keyword + "%'";
+
+		try {
+
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			list = new ArrayList();
+
+			while (rs.next()) {
+
+				BoardDto dto = new BoardDto();
+
+				dto.setID(rs.getInt(1));
+				dto.setTitle(rs.getString(2));
+				dto.setContents(rs.getString(3));
+				dto.setUserID(rs.getString(4));
+				dto.setDate(rs.getString(5));
+				dto.setAvailable(rs.getInt(6));
+				dto.setFile(rs.getString(7));
+
+				list.add(dto);
+			}
+
+			return list;
+
+		} catch (Exception e) {
+			e.getMessage();
+			e.getStackTrace();
+		}
+		return list;
+	}
 }

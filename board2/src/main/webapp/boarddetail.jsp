@@ -48,11 +48,11 @@
 
 <div class="container">
 	<div>
-		<table class="table table-striped" style="text-align:center; border:1px;">
+		<table class="table table-striped" style="text-align:center; border: solid gray 1px;">
 		
 			<thead>
 				<tr>
-					<th colspan="3" style="background-color: #eeeeee; text-align: center;">게시물번호</th>
+					<th colspan="3" style="background-color: #eeeeee; text-align: center;">게시물<br>조회수<%=dto.getCount() %></th>
 				</tr>
 			</thead>
 			
@@ -60,24 +60,24 @@
 			
 				<tr>
 					<td>게시물 제목</td>
-					<td colspan="2" style="text-align: left;"><%=dto.getTitle() %></td>
+					<td colspan="2" style="text-align: left; border-right: dotted gray 1px;"><%=dto.getTitle() %></td>
 				</tr>
 				
 				<tr>
 					<td>게시물 작성자</td>
-					<td colspan="2" style="text-align: left;"><%=dto.getUserID() %></td>
+					<td colspan="2" style="text-align: left; border-right: dotted gray 1px;"><%=dto.getUserID() %></td>
 				</tr>
 				
 				<tr>
 					<td>첨부파일</td>
-					<td colspan="2" style="text-align: left;"><%=dto.getFile() %></td>
+					<td colspan="2" style="text-align: left; border-right: dotted gray 1px;"><%=dto.getFile() %></td>
 				</tr>
 				
 				<tr>
 					<td>게시물 내용</td>
-					<td colspan="2" style="min-height: 300px; text-align: left;"><%=dto.getContents() %></td>
+					<td colspan="2" style="height: 300px; text-align: left; border-right: dotted gray 1px;"><%=dto.getContents() %></td>
 				</tr>
-			
+				
 			</tbody>
 		
 		</table>
