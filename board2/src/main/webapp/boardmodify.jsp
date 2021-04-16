@@ -29,7 +29,7 @@
 <div class="container">
 	<div>
 	
-		<form action="boardmodifycontroller.jsp?id=<%=id %>" method="post">
+		<form action="boardmodifycontroller.jsp?id=<%=id %>" method="post" enctype="multipart/form-data">
 	
 			<table class="table table-striped" style="text-align:center; border:1px;">
 			
@@ -57,6 +57,7 @@
 			</table>
 			
 			<input type="file" name="file">
+			<input type="hidden" name="file2" value=<%=dto.getFile() %>>
 			<input type="submit" value="글수정" class="btn btn-primary pull-right">
 			
 		</form>

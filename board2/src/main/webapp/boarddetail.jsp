@@ -59,22 +59,47 @@
 			<tbody>
 			
 				<tr>
-					<td>게시물 제목</td>
+					<td style="border-right: dotted 1px black; width: 300px;">게시물 제목</td>
 					<td colspan="2" style="text-align: left; border-right: dotted gray 1px;"><%=dto.getTitle() %></td>
 				</tr>
 				
 				<tr>
-					<td>게시물 작성자</td>
+					<td style="border-right: dotted 1px black; width: 300px;">게시물 이미지</td>
+					<td colspan="2" style="text-align: left; border-right: dotted gray 1px;">
+						<img alt="" src="upload/<%=dto.getFile() %>" width="50%">
+					</td>
+				</tr>
+				
+				<tr>
+					<td style="border-right: dotted 1px black; width: 300px;">게시물 작성자</td>
 					<td colspan="2" style="text-align: left; border-right: dotted gray 1px;"><%=dto.getUserID() %></td>
 				</tr>
 				
+				
+				<%
+				
+					if(dto.getFile() == null) {
+						%>
+						<tr>
+							<td style="border-right: dotted 1px black; width: 300px;">첨부파일</td>
+							<td colspan="2" style="text-align: left; border-right: dotted gray 1px;"></td>
+						</tr>
+						<%
+						
+					} else {
+						%>
 				<tr>
-					<td>첨부파일</td>
-					<td colspan="2" style="text-align: left; border-right: dotted gray 1px;"><%=dto.getFile() %></td>
+					<td style="border-right: dotted 1px black; width: 300px;">첨부파일</td>
+					<td colspan="2" style="text-align: left; border-right: dotted gray 1px;">
+						<a href="filecontroller.jsp?file=<%=dto.getFile() %>"><%=dto.getFile() %></a>
+					</td>
 				</tr>
+				<%
+				}
+				%>
 				
 				<tr>
-					<td>게시물 내용</td>
+					<td style="border-right: dotted 1px black; width: 300px;">게시물 내용</td>
 					<td colspan="2" style="height: 300px; text-align: left; border-right: dotted gray 1px;"><%=dto.getContents() %></td>
 				</tr>
 				
@@ -89,6 +114,71 @@
 	</div>
 </div>
 
+
+<!-- ////////////// 댓글 작성 코드 ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<div class="container">
+	<div>
+	<br><br><br>
+		<form action="replycontroller.jsp" method="post" enctype="multipart/form-data">
+	
+			<table class="table table-striped" style="text-align:center; border:1px;">
+			
+				<thead>
+					<tr>
+						<th style="background-color: #eeeeee; text-align: center;">댓글</th>
+					</tr>
+				</thead>
+				
+				<tbody> 
+					
+					<tr>
+						<td>
+							<textarea name="contents" placeholder="글 내용" class="form-control" maxlength="3000" 
+								style="height:50px;"></textarea>
+						</td>
+					</tr>
+				</tbody>
+			
+			</table>
+			
+			<input type="submit" value="댓글 등록" class="btn btn-primary pull-right">
+			
+		</form>
+	</div>
+</div>
+
+
+
+
+<!-- ////////////// 댓글 작성 목록 ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<br><br><br>
+
+<div class="container">
+	<div>
+		<table class="table table-striped" style="text-align:center; border:1px;">
+		
+			<thead>
+				<tr>
+					<th style="background-color: #eeeeee; text-align: center; width: 100px;">작성자</th>
+					<th style="background-color: #eeeeee; text-align: center;">내용</th>
+				</tr>
+			</thead>
+			
+				<tr>
+					<td>작성자</td>
+					<td>댓글 내용</td>
+				</tr>
+			
+			<tbody>
+				
+			</tbody>
+		
+		</table>
+		
+	</div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.js"></script>

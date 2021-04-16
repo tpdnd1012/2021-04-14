@@ -25,6 +25,7 @@
 			<thead>
 				<tr>
 					<th style="background-color: #eeeeee; text-align: center;">번호</th>
+					<th style="background-color: #eeeeee; text-align: center;">대표이미지</th>
 					<th style="background-color: #eeeeee; text-align: center;">제목</th>
 					<th style="background-color: #eeeeee; text-align: center;">작성자</th>
 					<th style="background-color: #eeeeee; text-align: center;">작성일</th>
@@ -63,6 +64,7 @@
 			%>
 				<tr onclick="location.href='boarddetail.jsp?id='+<%=dto.getID() %>"> <!-- DB에 있는 데이터를 for문으로 반복 -->
 					<td><%=dto.getID() %></td>
+					<td><img alt="" src="upload/<%=dto.getFile() %>" width="30px"></td>
 					<td><%=dto.getTitle()%></td>
 					<td><%=dto.getUserID() %></td>
 					<td><%=dto.getDate() %></td>
