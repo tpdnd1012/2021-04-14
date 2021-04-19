@@ -1,3 +1,5 @@
+<%@page import="DTO.ReplyDto"%>
+<%@page import="DAO.ReplyDao"%>
 <%@page import="DTO.BoardDto"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="DAO.BoardDao"%>
@@ -120,7 +122,7 @@
 <div class="container">
 	<div>
 	<br><br><br>
-		<form action="replycontroller.jsp" method="post" enctype="multipart/form-data">
+		<form action="replycontroller.jsp?id=<%=id %>" method="post">
 	
 			<table class="table table-striped" style="text-align:center; border:1px;">
 			
@@ -151,9 +153,18 @@
 
 
 
-<!-- ////////////// 댓글 작성 목록 ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ////////////// 댓글 목록 ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 <br><br><br>
+
+
+<%
+
+	ReplyDao replyDao = ReplyDao.getinstance();
+
+	ArrayList<ReplyDto> list = replyDao.getreplylist(id);
+
+%>
 
 <div class="container">
 	<div>
@@ -162,16 +173,25 @@
 			<thead>
 				<tr>
 					<th style="background-color: #eeeeee; text-align: center; width: 100px;">작성자</th>
-					<th style="background-color: #eeeeee; text-align: center;">내용</th>
+					<th style="background-color: #eeeeee; text-align: left;">내용</th>
 				</tr>
 			</thead>
-			
+
+				<%
+				for(int i = 0; i < list.size(); i++) {
+							
+							ReplyDto replyDto = list.get(i);
+				%>
 				<tr>
-					<td>작성자</td>
-					<td>댓글 내용</td>
+					<td><%=replyDto.getReply_userid() %></td>
+					<td style="text-align: left;"><%=replyDto.getReply_contents() %></td>
 				</tr>
-			
-			<tbody>
+
+				<%
+				}
+				%>
+
+				<tbody>
 				
 			</tbody>
 		

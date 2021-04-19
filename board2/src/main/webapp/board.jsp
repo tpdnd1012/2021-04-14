@@ -16,6 +16,21 @@
 </head>
 <body>
 
+<%
+
+	// 게시물 갯수에 따른 페이지 나누기
+	int pagenumber = 1; // 기존 1페이지 부터 시작
+	
+	if(request.getParameter("pagenumber") != null) { // 페이지 요청이 있으면
+		
+		pagenumber = Integer.parseInt(request.getParameter("pagenumber")); // 요청페이지로 바꾸기
+		
+	}
+	
+	// 페이지 요청이 없으면 1페이지
+
+%>
+
 <!-- 부트스트랩 테이블 -->
 
 <div class="container">
@@ -47,7 +62,7 @@
 				// 검색이 없는 경우
 				if(key == null || keyword == null) {
 
-					list = dao.boardlist(); // 모든 조회 메소드
+					list = dao.boardlist(pagenumber); // 모든 조회 메소드
 				
 				} else { // 검색이 있을 경우
 				
@@ -77,9 +92,28 @@
 			</tbody>
 		
 		</table>
+
+			<%
 		
+			if(pagenumber != 1) {
+				
+			%>
+			
+				<a href="board.jsp?pagenumber=<%=pagenumber - 1 %>" class="btn btn-success btn-arrow-left">이전</a>
+				
+			<%
+			} if(dao.nextpage(pagenumber + 1)){ // 만약에 다음 페이지가 존재하면
+			%>
+				
+				<a href="board.jsp?pagenumber=<%=pagenumber + 1 %>" class="btn btn-success btn-arrow-right">다음</a>
+				
+			<%
+			}
+			%>
+
+			<!----------------- 검색 ---------------------->
 		<form action="board.jsp" method="post">
-		
+			<!-- 게시판 목록 -->
 			<table style="margin: 0 auto;">
 				<tr>
 					<td>

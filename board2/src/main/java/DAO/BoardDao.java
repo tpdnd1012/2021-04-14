@@ -201,15 +201,17 @@ public class BoardDao {
 }
 	
 	// 게시물 모든 조회 메소드
-	public ArrayList<BoardDto> boardlist(){
+	public ArrayList<BoardDto> boardlist(int pagenumber){
 		
 		ArrayList<BoardDto> list = null;
 		
-		String sql = "select * from board where board_available = 1";
+		String sql = "select * from board where board_id < ? order by board_id desc limit 10";
 		
 		try {
 			
 			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, getnext() - (pagenumber - 1) * 10);
 			
 			rs = pstmt.executeQuery();
 			
@@ -238,6 +240,37 @@ public class BoardDao {
 		}
 		return list;
 	}
+	
+	// 다음 페이지 여부 확인 메소드
+	public boolean nextpage(int pagenumber) {
+		
+		String sql = "select * from board where board_id < ?";
+		
+		try {
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, getnext() - (pagenumber-1) * 10); // 중요
+						// 게시물 마지막번호 = 21
+						// 예) 21 - (1-1) * 10 = 21
+						// 예) 21 - (2-1) * 10 = 11
+						// 예) 21 - (3-1) * 10 = 1
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				return true;
+				
+			}
+			
+		}catch (Exception e) {
+			e.getMessage();
+			e.getStackTrace();
+		}
+		return false;
+	}
+	
 	
 	// 게시물 개별 조회 메소드
 	public BoardDto getboard(int id) {
