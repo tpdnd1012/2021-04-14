@@ -3,11 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<meta http-equiv="content-Type" content="text/html; charset = UTF-8"> <%// html 페이지 속성 %>
-<meta name="viewport" content ="width=device-width initial-scale = 1 "> <%// 반응형 웹 만들기 %>
-<link rel="stylesheet" href="css/bootstrap.css"> <%// 링크 스타일 %>
-
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -51,10 +46,6 @@
 		</form>
 	</div>
 </div>
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
 
 </body>
 </html>

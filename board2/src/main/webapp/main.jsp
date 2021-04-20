@@ -8,7 +8,11 @@
 </head>
 <body>
 
+<%@include file="/menu.jsp" %>
 
+asds
+
+<%@include file="/footer.jsp" %>
 
 </body>
 </html>

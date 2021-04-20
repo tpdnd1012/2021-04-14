@@ -8,11 +8,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<meta http-equiv="content-Type" content="text/html; charset = UTF-8"> <%// html 페이지 속성 %>
-<meta name="viewport" content ="width=device-width initial-scale = 1 "> <%// 반응형 웹 만들기 %>
-<link rel="stylesheet" href="css/bootstrap.css"> <%// 링크 스타일 %>
-
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
@@ -36,6 +31,8 @@
 
 </head>
 <body>
+
+<%@include file="/menu.jsp" %>
 
 <%
 	int id = Integer.parseInt(request.getParameter("id"));
@@ -68,7 +65,7 @@
 				<tr>
 					<td style="border-right: dotted 1px black; width: 300px;">게시물 이미지</td>
 					<td colspan="2" style="text-align: left; border-right: dotted gray 1px;">
-						<img alt="" src="upload/<%=dto.getFile() %>" width="50%">
+						<img alt="" src="../upload/<%=dto.getFile() %>" width="50%">
 					</td>
 				</tr>
 				
@@ -200,8 +197,7 @@
 	</div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
+<%@include file="/footer.jsp" %>
 
 </body>
 </html>
