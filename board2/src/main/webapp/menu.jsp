@@ -1,3 +1,4 @@
+<%@page import="java.io.PrintWriter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,6 +29,11 @@
 </head>
 <body>
 
+<%
+				// 형변환 꼭 해줘야함
+	String user = (String)session.getAttribute("user");
+%>
+
 <nav class="navbar-default" style="background-color: white; margin-top: 10px;">
 
 	<div class="container">
@@ -48,9 +54,23 @@
 					</ul>
 					
 				</li><!-- 드랍다운 끝 -->
+
+					<li><a href="/board2/board/board.jsp">문의사항</a></li>
 				
-				<li><a href="/board2/board/board.jsp">문의사항</a></li>
-				<li><a href="/board2/member/login.jsp">로그인</a></li>
+					<%
+						if(user == null){
+							%>
+								<li><a href="/board2/member/login.jsp">로그인</a></li>
+								<li><a href="/board2/member/signup.jsp">회원가입</a></li>
+							<%
+						} else {
+							%>
+								<li><%=user %>님</li>
+								<li><a href="/board2/member/logout.jsp">로그아웃</a></li>
+								<li><a href="/board2/member/memberinfo.jsp">회원정보</a></li>
+							<%
+						}
+					%>
 				
 			</ul>
 		</div>

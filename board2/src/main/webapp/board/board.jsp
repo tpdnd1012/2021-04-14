@@ -1,3 +1,4 @@
+<%@page import="java.io.PrintWriter"%>
 <%@page import="DTO.BoardDto"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="DAO.BoardDao"%>

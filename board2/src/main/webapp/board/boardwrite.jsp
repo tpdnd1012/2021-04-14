@@ -7,6 +7,21 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@include file="/menu.jsp" %>
+
+<%
+		// include의 menu에 user 세션 존재
+	if(user == null) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		
+			script.println("alert('로그인 후 작성이 가능합니다.');");
+			script.println("location.href='/board2/member/login.jsp'");
+		
+		script.println("</script>");
+	}
+
+%>
 
 <!-- 부트스트랩 테이블 -->
 

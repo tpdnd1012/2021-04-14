@@ -114,7 +114,6 @@ input[type=password] {
 
 %>
 
-
 <div class="container">
 
 	<div class="row">
@@ -137,11 +136,11 @@ input[type=password] {
 			
 			<div class="col-lg-12 login-form">
 				
-					<form method="post" action="logincontroller.jsp">
+					<form name="signupform" method="post" action="signupcontroller.jsp" onsubmit="return checkadd()">
 					
 						<div class="form-group">
 						
-							<label class="form-control-label">USER ID</label>
+							<label class="form-control-label">USER ID [필수]</label>
 							
 							<input type="text" class="form-control" maxlength="30" name="id">
 						
@@ -149,9 +148,54 @@ input[type=password] {
 						
 						<div class="form-group">
 						
-							<label class="form-control-label">USER Password</label>
+							<label class="form-control-label">Password [필수]</label>
 							
 							<input type="password" class="form-control" maxlength="30" name="password">
+						
+						</div>
+						
+						<div class="form-group">
+						
+							<label class="form-control-label">Password Check [필수]</label>
+							
+							<input type="password" class="form-control" maxlength="30" name="passwordcheck">
+						
+						</div>
+						
+						<div class="form-group">
+						
+							<label class="form-control-label">USER Name [필수]</label>
+							
+							<input type="password" class="form-control" maxlength="30" name="name">
+						
+						</div>
+						
+						<div class="form-group">
+						
+							<label class="form-control-label">USER Phone</label>
+							
+							<input type="password" class="form-control" maxlength="30" name="phone">
+						
+						</div>
+						
+						<div class="form-group">
+						
+							<label class="form-control-label">USER Email</label>
+							
+							<input type="password" class="form-control" maxlength="30" name="email">
+						
+						</div>
+						
+						<div class="form-group">
+						
+							<label class="form-control-label">USER Address</label>
+							<input type="text" id="sample4_postcode" placeholder="우편번호" name="address1">
+							<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+							<input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address2">
+							<input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="address3">
+							<span id="guide" style="color:#999;display:none"></span>
+							<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="address4">
+							<input type="text" id="sample4_extraAddress" placeholder="참고항목">
 						
 						</div>
 						
@@ -165,17 +209,16 @@ input[type=password] {
 									if(cancel != null){
 									
 								%>
-									[ 로그인 실패 ] 동일한 회원정보가 없습니다.
+									[ 회원가입 실패 ] 동일한 아이디가 존재합니다
 								<%
 								}
 								%>
-								<!-- 로그인 실패시 -->
 							
 							</div>
 							
 							<div class="col-lg-6 login-btm login-button">
 							
-								<button type="submit" class="btn btn-outline-primary">LOGIN</button>
+								<button type="submit" class="btn btn-outline-primary">SIGN UP</button>
 							
 							</div>
 						

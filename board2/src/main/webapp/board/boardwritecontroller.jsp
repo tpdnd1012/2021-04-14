@@ -12,6 +12,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@include file="/menu.jsp" %>
 
 	<%
 	
@@ -41,7 +42,7 @@
 		// ID 생략
 		boardDto.setTitle(title);
 		boardDto.setContents(contents);
-		boardDto.setUserID("유재석");
+		boardDto.setUserID(user);
 		// Date 생략
 		boardDto.setAvailable(1);
 		boardDto.setFile(file);
