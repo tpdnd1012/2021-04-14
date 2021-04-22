@@ -39,62 +39,6 @@ public class ReplyDao {
 
 		}
 		
-		// 댓글 등록 메소드
-		public int re_write(ReplyDto replyDto) {
-			
-			String sql = "insert into reply(reply_boardid, reply_userid, reply_contents)" + "values(?,?,?)";
-			
-			try {
-				
-				PreparedStatement pstmt = conn.prepareStatement(sql);
-				
-				pstmt.setInt(1, replyDto.getReply_boardid());
-				pstmt.setString(2, replyDto.getReply_userid());
-				pstmt.setString(3, replyDto.getReply_contents());
-				
-				pstmt.executeUpdate();
-				
-				return 1;
-				
-			}catch (Exception e) {
-				e.getMessage();
-				e.getStackTrace();
-			}
-			return -1;
-		}
 		
-		// 해당 게시물의 댓글 출력 메소드
-		public ArrayList<ReplyDto> getreplylist(int id) {
-			
-			String sql = "select * from reply where reply_boardid = ? order by reply_num desc";
-			
-			try {
-				
-				PreparedStatement pstmt = conn.prepareStatement(sql);
-				
-				pstmt.setInt(1, id);
-				
-				rs = pstmt.executeQuery();
-				
-				ArrayList<ReplyDto> list = new ArrayList<>();
-				
-				while(rs.next()) {
-					
-					ReplyDto replyDto = new ReplyDto();
-					
-					replyDto.setReply_userid(rs.getString(3));
-					replyDto.setReply_contents(rs.getString(4));
-					
-					list.add(replyDto);
-					
-				}
-				return list;
-				
-			}catch (Exception e) {
-				e.getMessage();
-				e.getStackTrace();
-			}
-			return null;
-		}
 
 }

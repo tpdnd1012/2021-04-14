@@ -166,7 +166,7 @@ input[type=password] {
 						
 							<label class="form-control-label">USER Name [필수]</label>
 							
-							<input type="password" class="form-control" maxlength="30" name="name">
+							<input type="text" class="form-control" maxlength="30" name="name">
 						
 						</div>
 						
@@ -174,7 +174,7 @@ input[type=password] {
 						
 							<label class="form-control-label">USER Phone</label>
 							
-							<input type="password" class="form-control" maxlength="30" name="phone">
+							<input type="text" class="form-control" maxlength="30" name="phone">
 						
 						</div>
 						
@@ -182,7 +182,7 @@ input[type=password] {
 						
 							<label class="form-control-label">USER Email</label>
 							
-							<input type="password" class="form-control" maxlength="30" name="email">
+							<input type="text" class="form-control" maxlength="30" name="email">
 						
 						</div>
 						

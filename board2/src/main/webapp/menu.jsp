@@ -63,12 +63,18 @@
 								<li><a href="/board2/member/login.jsp">로그인</a></li>
 								<li><a href="/board2/member/signup.jsp">회원가입</a></li>
 							<%
-						} else {
+						}else {
 							%>
 								<li><%=user %>님</li>
 								<li><a href="/board2/member/logout.jsp">로그아웃</a></li>
 								<li><a href="/board2/member/memberinfo.jsp">회원정보</a></li>
 							<%
+							if(user.equals("admin")) {
+								%>
+								<li><a href="/board2/product/productadd.jsp">제품등록</a></li>
+								
+								<%
+							}
 						}
 					%>
 				

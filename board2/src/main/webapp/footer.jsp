@@ -47,6 +47,43 @@
 		}
 		
 	}
+	
+	function checkadd2() {
+		
+		if(addform.name.value.length < 4 || addform.name.value.length >= 50){
+			alert("상품명[최소 4글자 ~ 50글자] 입력해주세요.");
+			return false;
+		}
+		
+		// 가격이 입력이 안되어 있거나 가격이 문자가 포함되어 있으면
+		if(addform.price.value.length == 0 || isNaN(addform.price.value)){
+											// isNaN(숫자) : flase
+											// isNaN("숫자") : flase => 숫자반환
+											// isNaN(숫자 + 문자) : true
+			alert("가격은 숫자만 입력해주세요.");
+			return false;
+		}
+		
+		if(addform.price.value < 0) {
+			alert("가격은 양수로만 입력가능합니다.");
+			return false;
+		}
+		
+		// 재고 입력이 안되어 있거나 가격이 문자가 포함되어 있으면
+		if(addform.stock.value.length == 0 || isNaN(addform.stock.value)){
+											// isNaN(숫자) : flase
+											// isNaN("숫자") : flase => 숫자반환
+											// isNaN(숫자 + 문자) : true
+			alert("재고는 숫자만 입력해주세요.");
+			return false;
+		}
+		
+		if(addform.stock.value < 0) {
+			alert("재고는 양수로만 입력가능합니다.");
+			return false;
+		}
+		
+	}
 
 </script>
 
