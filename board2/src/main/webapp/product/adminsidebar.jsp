@@ -14,7 +14,7 @@
 			<li class="list-group-item"><a href="#">제품 목록</a></li>
 			<li class="list-group-item"><a href="productadd.jsp">제품 등록</a></li>
 			<li class="list-group-item"><a href="#">제품 관리</a></li>
-			<li class="list-group-item"><a href="#">리뷰 관리</a></li>
+			<li class="list-group-item"><a href="#">리뷰 관리</a></li>dasdasd
 		</ul>
 		
 	</div>
