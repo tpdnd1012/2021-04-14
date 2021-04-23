@@ -69,5 +69,46 @@ public class ProductDao {
 			}
 			return -1;
 		}
+		
+		// 모든 제품 조회
+		public ArrayList<ProductDto> productalllist() {
+			
+			ArrayList<ProductDto> list = new ArrayList<ProductDto>();
+			
+			String sql = "select * from product";
+			
+			try {
+				
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					
+					ProductDto dto = new ProductDto(
+							rs.getString(2),
+							rs.getInt(3),
+							rs.getString(4),
+							rs.getString(5),
+							rs.getInt(6),
+							rs.getInt(7),
+							rs.getString(8),
+							rs.getInt(9),
+							rs.getInt(10));
+					
+					dto.setProduct_id(rs.getInt(1)); // 제품번호
+					
+					list.add(dto);
+					
+				}
+				
+				return list;
+				
+			}catch (Exception e) {
+				e.getMessage();
+				e.getStackTrace();
+			}
+			return list;
+		}
 
 }

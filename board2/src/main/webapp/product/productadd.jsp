@@ -26,7 +26,13 @@
 
 <div class="container">
 
-	<div class="col-md-3"></div> <!-- 공백 -->
+	<div class="col-md-3"> <!-- 공백 -->
+	
+	<%@include file="adminsidebar.jsp" %>
+	
+	</div>
+	
+	<div class="col-md-1"></div>
 	
 	<div class="col-md-5">
 
