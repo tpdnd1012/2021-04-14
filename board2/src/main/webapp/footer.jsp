@@ -146,5 +146,75 @@
     }
 </script>
 
+<script type="text/javascript">
+
+	var sell_price; // 변수
+	var amount; // 변수
+	
+	function init() { // 메소드 정의
+		
+		sell_price = document.form.sell_price.value; // form 안에 있는 가격 값 가져오기
+		
+		amount = document.form.amount.value; // form 안에 있는 수량 값 가져오기
+		
+		max = document.form.max.value;
+		
+		document.form.sum.value = sell_price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); // 총 가격 넣기
+		
+	}
+	
+	function add() {
+		
+		hm = document.form.amount;
+		sum = document.form.sum;
+		
+		if(hm.value >= parseInt(max)) { // 수량이 재고수보다 커지면 중지
+			
+			alert("최대수량 입니다.")
+			return;
+			
+		}
+		
+		hm.value++;
+		sum.value = (parseInt(hm.value) * sell_price).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); // 총금액 = 수량 * 가격
+		
+	}
+	
+	function del() {
+		
+		hm = document.form.amount;
+		sum = document.form.sum;
+		
+		if(hm.value > 1) {
+			
+			hm.value--;
+			sum.value = (parseInt(hm.value) * sell_price).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); // 총금액 = 수량 * 가격
+			
+		}
+		
+	}
+	
+	function addtocard() {
+		
+		if(confirm("상품을 장바구니에 추가하시겠습니까?")) {
+			
+			if(confirm("장바구니로 이동할까요?")) {
+			
+				form.submit();
+				
+			} else {
+				
+			}
+			
+		} else {
+			
+			
+			
+		}
+		
+	}
+
+</script>
+
 </body>
 </html>

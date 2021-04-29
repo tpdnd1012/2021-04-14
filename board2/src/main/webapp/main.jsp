@@ -156,7 +156,7 @@ ul .main_li .goods_info .price {
 				%>
 				
 			<li class="main_li"> <!-- 하나의 상품 -->
-				<a href="#"><img alt="" src="upload/<%=dto.getProduct_file() %>"></a>
+				<a href="product/productview.jsp?product_id=<%=dto.getProduct_id() %>"><img alt="" src="upload/<%=dto.getProduct_file() %>"></a>
 				
 				<div class="goods_info">
 					<span class="manufacturer"><%=dto.getProduct_manufacturer() %></span>
