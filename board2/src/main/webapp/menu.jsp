@@ -31,6 +31,10 @@
 
 </style>
 
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
 </head>
 <body>
 
@@ -115,7 +119,7 @@
 					%>
 					<li><a href="/board2/board/board.jsp" style="font-size: 10px;">고객센터</a></li>
 					
-					<li><a href="/board2/board/board.jsp" style="font-size: 10px;"><img alt="" src="/board2/img/장바구니.png" width="25px;"></a></li>
+					<li><a href="/board2/product/cartlist.jsp" style="font-size: 10px;"><img alt="" src="/board2/img/장바구니.png" width="25px;"></a></li>
 				
 			</ul>
 		</div>

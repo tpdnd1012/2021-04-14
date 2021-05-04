@@ -92,4 +92,39 @@ public class MemberDao {
 		}
 		return -1; // 실패
 	}
+	
+	// 회원 조회 메소드
+		public MemberDto getmember(String id) {
+			
+			String sql = "select * from member2 where member_id = ?";
+			
+			try {
+				
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, id);
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					
+					MemberDto dto = new MemberDto();
+					
+					dto.setMember_id(rs.getString(1));
+					dto.setMember_password(rs.getString(2));
+					dto.setMember_name(rs.getString(3));
+					dto.setMember_phone(rs.getString(4));
+					dto.setMember_email(rs.getString(5));
+					dto.setMember_address(rs.getString(6));
+					
+					return dto;
+					
+				}
+				
+			}catch (Exception e) {
+				e.getMessage();
+				e.getStackTrace();
+			}
+			return null;
+		}
 }

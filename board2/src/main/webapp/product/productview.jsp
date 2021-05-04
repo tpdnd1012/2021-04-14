@@ -81,7 +81,7 @@ input:hover {
 					
 					<p>총 금액 : <input type="text" name="sum" size="10" disabled="disabled">원</p>
 					
-					<a href="#" class="btn btn-info" style="margin-top: 30px;" onclick="addtocard()">장바구니</a>
+					<a href="#" class="btn btn-info" style="margin-top: 30px;" onclick="addtocart()">장바구니</a>
 					<a href="#" class="btn btn-info" style="margin-top: 30px;">구매하기</a>
 					
 				</form>
