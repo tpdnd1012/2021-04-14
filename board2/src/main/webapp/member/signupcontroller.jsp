@@ -52,6 +52,9 @@
 			
 			script.println("</script>");
 			
+			// 회원가입 메일 보내기
+			dto.mailSend(dto.getMember_email());
+			
 		} else {
 			
 			PrintWriter script = response.getWriter();
