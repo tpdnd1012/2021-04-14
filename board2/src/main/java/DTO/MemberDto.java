@@ -62,7 +62,7 @@ public class MemberDto {
 		
 		String host = "smtp.naver.com"; // 네이버, 구글, 다음 등 호스트
 		String user = "tpdnd1012@naver.com"; // 보내는 사람 아이디
-		String password = "dnd4293^^*"; // 보내는 사람 비밀번호
+		String password = "asdasdasd"; // 보내는 사람 비밀번호
 		
 		Properties properties = new Properties();
 		
